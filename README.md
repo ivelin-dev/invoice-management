@@ -14,9 +14,15 @@ Name: `invoice_management`
 These settings can be configured in `config/database.php`.  
 Please remember to alter the SQL dump file if you do decide to change the database name.  
 
-# NOTE
+# THINGS THAN CAN BE IMPROVED
 
-Please note this project doesn't have any user input validation. This is something that can be improved.
+Please note this is a demo so some shortcuts were intentionally taken.
+
+* Make all columns atomic (`customer_name` -> `customer_first_name` & `customer_last_name`; `customer_address` -> `customer_street` ...)
+* `process/edit.php` should compare differences and `UPDATE` instead of what it is currently doing - `DELETE`ing all related records and then `INSERT`ing
+* Implement user input validation
+* Split queries into functions in a helper class
+* Split `create.js` into `edit.js` & `create.js` since it's being used by both `edit.php` and `create.php` at the moment
 
 
 # INSTRUCTIONS
