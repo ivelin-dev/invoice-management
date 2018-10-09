@@ -14,6 +14,9 @@ Name: `invoice_management`
 These settings can be configured in `config/database.php`.  
 Please remember to alter the SQL dump file if you do decide to change the database name.  
 
+# NOTE
+
+Please note this project doesn't have any user input validation. This is something that can be improved.
 
 
 # INSTRUCTIONS
