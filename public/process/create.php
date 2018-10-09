@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dueDate = $_POST['dueDate'];
     $note = $_POST['note'];
 
+    //1. Insert invoices
     $sql = 'INSERT INTO invoices (customer_name, customer_address, date, due_date, note) VALUES (?, ?, ?, ?, ?)';
     $statement = $dbCon->prepare($sql);
     $statement->bind_param('sssss', $customerName, $customerAddress, $invoiceDate, $dueDate, $note);
@@ -16,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $invoiceId = $statement->insert_id;
 
+    //2. Insert all linked products (variable number of them)
     $productCount = 1;
     foreach ($_POST as $key => $value) {
 
@@ -35,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     }
 
+    //3. Insert all payments (variable number of them)
     $paymentCount = 1;
     foreach ($_POST as $key => $value) {
 

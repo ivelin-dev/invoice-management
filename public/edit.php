@@ -5,9 +5,11 @@ $invoiceId = $_GET['id'];
 
 if ($invoiceId > 0) {
 
+    //Keep track of number of product & payment inputs which are displayed to the user
     $countOfProductInputs = 0;
     $countOfPaymentInputs = 0;
 
+    //Fetch all invoices
     $sql = 'SELECT * FROM invoices WHERE id = ?';
     $statement = $dbCon->prepare($sql);
     $statement->bind_param('i', $invoiceId);
@@ -15,12 +17,13 @@ if ($invoiceId > 0) {
     $result = $statement->get_result();
     $invoice = $result->fetch_assoc();
 
+    //If it can't be found, we can't continue
     if ($invoice == null) {
         header('Location: ' . '../index.php');
         die();
     }
 
-
+    //Fetch all products linked to this invoice
     $sql = 'SELECT * FROM invoice_products WHERE invoice_id = ?';
     $statement = $dbCon->prepare($sql);
     $statement->bind_param('i', $invoiceId);
@@ -28,7 +31,7 @@ if ($invoiceId > 0) {
     $result = $statement->get_result();
     $invoiceProducts = $result->fetch_all(MYSQLI_ASSOC);
 
-
+    //Fetch all payments linked to this invoice
     $sql = 'SELECT * FROM invoice_payments WHERE invoice_id = ?';
     $statement = $dbCon->prepare($sql);
     $statement->bind_param('i', $invoiceId);
@@ -36,7 +39,7 @@ if ($invoiceId > 0) {
     $result = $statement->get_result();
     $invoicePayments = $result->fetch_all(MYSQLI_ASSOC);
 
-
+    //Fetch all products in order to populate dropdowns
     $products = [];
     $sql = 'SELECT * FROM products';
     if ($result = mysqli_query($dbCon, $sql)) {
@@ -47,6 +50,7 @@ if ($invoiceId > 0) {
 
     }
 
+    //Fetch all payment methods in order to populate dropdowns
     $sql = 'SELECT * FROM payment_methods';
     if ($result = mysqli_query($dbCon, $sql)) {
 

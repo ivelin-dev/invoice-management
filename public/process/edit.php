@@ -3,12 +3,15 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once "../../config/database.php";
 
-    if(!isset($_POST['id'])){
+    //If the invoice ID is not set, we can't continue
+    if (!isset($_POST['id'])) {
         header('Location: ' . '../index.php');
         die();
     }
+
     $invoiceId = $_POST['id'];
 
+    //1. Delete all invoices, invoice_products and invoice_payments records by $invoiceId
     $sql = 'DELETE FROM invoices WHERE id = ?';
     $statement = $dbCon->prepare($sql);
     $statement->bind_param('i', $invoiceId);
@@ -25,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statement->execute();
 
 
+    //2. Insert updated values in invoices, invoice_products and invoice_payments
+    //Use same ID as before when inserting ($invoiceId)
     $customerName = $_POST['customerName'];
     $customerAddress = $_POST['customerAddress'];
     $invoiceDate = $_POST['invoiceDate'];

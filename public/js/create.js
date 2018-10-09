@@ -1,3 +1,4 @@
+//Declare all used elements
 let deleteProductBtn = $('#deleteProduct');
 let addProductBtn = $('#addProduct');
 let productsDiv = $('#products');
@@ -13,6 +14,8 @@ let paymentsDiv = $('#payments');
 let countOfProductInputsHidden = $('#countOfProductInputs');
 let countOfPaymentInputsHidden = $('#countOfPaymentInputs');
 
+//The countOfProductInputsHidden element is only set on the edit.php page. We need to update the count
+//of inputs for products & payments since the user could have added some when creating the invoice.
 if(countOfProductInputsHidden.val()){
 
     countOfProductInputs = countOfProductInputsHidden.val();
@@ -22,11 +25,12 @@ if(countOfPaymentInputsHidden.val()){
     countOfPaymentInputs = countOfPaymentInputsHidden.val();
 }
 
+//Fetch all products and payments from database so that we can populate the dropdowns
+//if user adds any payments or products
 $.post("/api/get-products.php", function (data, status) {
         products = JSON.parse(data);
     }
 );
-
 $.post("/api/get-payment-methods.php", function (data, status) {
         payments = JSON.parse(data);
     }
@@ -34,10 +38,8 @@ $.post("/api/get-payment-methods.php", function (data, status) {
 
 
 addProductBtn.click(function () {
-
     countOfProductInputs++;
     appendProductInputElements();
-
 });
 addPaymentBtn.click(function () {
     countOfPaymentInputs++;
@@ -51,6 +53,7 @@ deletePaymentBtn.click(function () {
     $('#payments .row').last().remove();
 });
 
+//Populate product price and tax inputs with defaults upon selecting a product from the dropdown
 productsDiv.on('change', 'select', function () {
     selectedProduct = $(this).val();
 
@@ -63,7 +66,9 @@ productsDiv.on('change', 'select', function () {
     $('#productTax' + productInputNumber).val(tax);
 });
 
-
+/**
+ * Dynamically adds input elements and populates the product dropdown
+ */
 function appendProductInputElements() {
     rowDiv = $('<div class="row" />');
 
@@ -108,6 +113,9 @@ function appendProductInputElements() {
     productsDiv.append(rowDiv);
 }
 
+/**
+ * Dynamically adds input elements and populates the payment method dropdown
+ */
 function appendPaymentInputElements() {
 
     rowDiv = $('<div class="row" />');

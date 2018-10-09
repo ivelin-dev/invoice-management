@@ -5,6 +5,7 @@ $invoiceId = $_GET['id'];
 
 if ($invoiceId > 0) {
 
+    //Query for single invoice
     $sql = 'SELECT * FROM invoices WHERE id = ?';
     $statement = $dbCon->prepare($sql);
     $statement->bind_param('i', $invoiceId);
@@ -12,13 +13,16 @@ if ($invoiceId > 0) {
     $result = $statement->get_result();
     $invoice = $result->fetch_assoc();
 
+    //If it can't be found, we can't continue
     if ($invoice == null) {
         header('Location: ' . '../index.php');
         die();
     }
 
+    //Keep track of sum of all payments and product costs
     $invoiceTotal = 0;
 
+    //Fetch all products linked to this invoice
     $sql = 'SELECT * FROM invoice_products WHERE invoice_id = ?';
     $statement = $dbCon->prepare($sql);
     $statement->bind_param('i', $invoiceId);
@@ -26,16 +30,20 @@ if ($invoiceId > 0) {
     $result = $statement->get_result();
     $invoiceProducts = $result->fetch_all(MYSQLI_ASSOC);
 
+    //Calculate total cost after quantity amount and taxes for each product
     foreach ($invoiceProducts as &$product) {
         $costPriorToTax = $product['price'] * $product['quantity'];
         $tax = $costPriorToTax * $product['tax'] / 100;
         $total = $costPriorToTax + $tax;
 
+        //Append total cost of product to $product array
+        //Note: $product is passed as a reference in this loop
         $product['total'] = $total;
 
         $invoiceTotal += $total;
     }
 
+    //Fetch all payments linked to this invoice
     $sql = 'SELECT * FROM invoice_payments WHERE invoice_id = ?';
     $statement = $dbCon->prepare($sql);
     $statement->bind_param('i', $invoiceId);
