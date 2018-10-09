@@ -88,12 +88,12 @@ if ($invoiceId > 0) {
                 <div class="panel-body">
                     <h5>PRODUCTS:</h5>
                     <?php
-                    foreach ($invoiceProducts as $product) {
-                        echo '<strong>Product Name:</strong>' . $product['name'] . '<br>';
-                        echo '<strong>Quantity:</strong>' . $product['quantity'] . '<br>';
-                        echo '<strong>Price:</strong>$' . $product['price'] . '<br>';
-                        echo '<strong>Tax:</strong>' . $product['tax'] . '%<br>';
-                        echo '<strong>Total:</strong>' . $product['total'] . '<br>';
+                    foreach ($invoiceProducts as $invoiceProduct) {
+                        echo '<strong>Product Name:</strong>' . $invoiceProduct['name'] . '<br>';
+                        echo '<strong>Quantity:</strong>' . $invoiceProduct['quantity'] . '<br>';
+                        echo '<strong>Price:</strong>$' . $invoiceProduct['price'] . '<br>';
+                        echo '<strong>Tax:</strong>' . $invoiceProduct['tax'] . '%<br>';
+                        echo '<strong>Total:</strong>' . $invoiceProduct['total'] . '<br>';
                         echo '<hr>';
                     }
                     ?>
