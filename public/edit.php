@@ -196,7 +196,7 @@ if ($invoiceId > 0) {
             <button type="submit" class="btn btn-primary">EDIT INVOICE</button>
 
         </form>
-        <a class="btn btn-danger" style="margin-top: 20px" href="process/delete.php<?php echo $_GET['id'] ?>">DELETE INVOICE</a>
+        <a class="btn btn-danger" style="margin-top: 20px" href="process/delete.php?id=<?php echo $_GET['id'] ?>">DELETE INVOICE</a>
     </div>
 </div>
 
