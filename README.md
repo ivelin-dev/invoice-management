@@ -41,11 +41,11 @@ an invoice for a customer.
 **Pages**
 
 1. Dashboard – This page will be used to show and allow the user to manage the
-    created invoices.
+    created invoices.  
        a. You will need to be able to access the create, edit and view invoice pages
           from here. :white_check_mark:  
        b. You will need to be able to delete an invoice from here. :white_check_mark:  
-2. Create Invoice – this page will allow you to create a new invoice.
+2. Create Invoice – this page will allow you to create a new invoice.  
     a. The first section will allow you to enter a customer name, their address,
        invoice date, invoice number, due date and note. :white_check_mark:  
     b. The second section will allow you to add new purchase line items by
@@ -58,7 +58,7 @@ an invoice for a customer.
     You need to be able to add and remove line items. :white_check_mark:  
 
 3. View Invoice – This page will allow you to view the data that was entered in on the
-    create invoice page.
+    create invoice page.  
        a. The first section will be an overview containing the customer name, their
           address, invoice date, invoice number, due date and note. :white_check_mark:  
        b. The second section will contain both the purchase and payment line items
@@ -66,7 +66,7 @@ an invoice for a customer.
        c. The third section will contain the totals calculated from the invoice line
           items. :white_check_mark:  
 4. Edit Invoice – This page will allow a user to make changes to the invoice they
-    created.
+    created.  
        a. This page should share the same design as the create invoice page but load
           with the values that were previously entered in. :white_check_mark:  
        b. In the first section you will need to be able to edit the customer name, their
