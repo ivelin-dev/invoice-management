@@ -1,3 +1,21 @@
+# CONFIG
+### SQL DUMP WITH DATA
+
+The SQL dump with the database, tables and dummy data can be found in `config/database.php`.  
+
+### CONFIG
+
+Database connection defaults:  
+Server: `localhost`  
+Username: `root`  
+Password: (none)  
+Name: `invoice_management`  
+
+These settings can be configured in `config/database.php`.  
+Please remember to alter the SQL dump file if you do decide to change the database name.  
+
+
+
 # INSTRUCTIONS
 
 **Scenario**
