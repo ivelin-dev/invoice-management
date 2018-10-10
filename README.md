@@ -14,7 +14,7 @@ Name: `invoice_management`
 These settings can be configured in `config/database.php`.  
 Please remember to alter the SQL dump file if you do decide to change the database name.  
 
-# THINGS THAN CAN BE IMPROVED
+# THINGS THAT CAN BE IMPROVED
 
 Please note this is a demo so some shortcuts were intentionally taken.
 
